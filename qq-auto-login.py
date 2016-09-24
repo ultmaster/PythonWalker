@@ -1,17 +1,39 @@
 # coding=utf-8
 import time, bs4
 from selenium import webdriver
-
+import requests
 
 def go(username, pwd):
-    b.get('https://xui.ptlogin2.qq.com/cgi-bin/xlogin?appid=780038201&target=top&proxy_url=https%3A%2F%2Fpassport.book.qq.com%2Findex.php%2Findex%2Fproxy.html&s_url=https%3A%2F%2Fpassport.book.qq.com%2Findex%2Flogin.html%3Ftype%3Dqq%26site%3Dchuangshi%26sid%3Dqq3i47lud4heuio6qj3ajqliq1%26http_referer%3Dlocal')
+    weblocation = 'https://xui.ptlogin2.qq.com/cgi-bin/xlogin?appid=780038201&target=top&proxy_url=https%3A%2F%2Fpassport.book.qq.com%2Findex.php%2Findex%2Fproxy.html&s_url=https%3A%2F%2Fpassport.book.qq.com%2Findex%2Flogin.html%3Ftype%3Dqq%26site%3Dchuangshi%26sid%3Dqq3i47lud4heuio6qj3ajqliq1%26http_referer%3Dlocal'
+    b.get(weblocation)
     #r = requests.get('https://xui.ptlogin2.qq.com/cgi-bin/xlogin?appid=780038201&target=top&proxy_url=https%3A%2F%2Fpassport.book.qq.com%2Findex.php%2Findex%2Fproxy.html&s_url=https%3A%2F%2Fpassport.book.qq.com%2Findex%2Flogin.html%3Ftype%3Dqq%26site%3Dchuangshi%26sid%3Dqq3i47lud4heuio6qj3ajqliq1%26http_referer%3Dlocal')
     #r.encoding = 'utf-8'
     #print(r.text)
     b.find_element_by_id('switcher_plogin').click()
     b.find_element_by_id('u').send_keys(username)
     b.find_element_by_id('p').send_keys(pwd)
+    time.sleep(0.5)
     b.find_element_by_id('login_button').click()
+    time.sleep(2)
+    while True:
+        if 'chuangshi.qq.com' in b.current_url:
+            break
+        if '安全验证' in b.page_source:
+            b.switch_to.frame(b.find_element_by_xpath('//*[@id="newVcodeIframe"]/iframe'))
+            # print(b.page_source)
+            print('ok')
+            # time.sleep(5)
+            image_url = b.find_element_by_xpath('//*[@id="capImg"]').get_attribute('src')
+            # imageurl = bs4.BeautifulSoup(b.page_source, 'html.parser').find(id="capImg")['src']
+            print(image_url)
+            r = requests.get(image_url)
+            with open("hahaha.jpg", "wb") as img:
+                img.write(r.content)
+            b.find_element_by_id('capAns').send_keys(input())
+            b.find_element_by_class_name('btn_verify').click()
+
+        time.sleep(0.2)
+
     #while 'chuangshi' not in b.current_url:
     #    time.sleep(1)
     #time.sleep(1)
@@ -41,7 +63,7 @@ def gogo(href):
     # b.execute_script('submitRecommend;')
     time.sleep(3)
 
-b = webdriver.PhantomJS()
+b = webdriver.Chrome()
 b.implicitly_wait(10)
 go('2435534588', 'wangjiahao')
 print("hahaha!")
