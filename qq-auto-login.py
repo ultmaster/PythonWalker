@@ -63,7 +63,7 @@ def gogo(href):
     # b.execute_script('submitRecommend;')
     time.sleep(3)
 
-b = webdriver.Chrome()
+b = webdriver.PhantomJS()
 b.implicitly_wait(10)
 go('2435534588', 'wangjiahao')
 print("hahaha!")

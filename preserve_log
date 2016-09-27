@@ -3,3 +3,21 @@
 bid=13702712&Votenum=1&_token=czo4OiJZUHZuSnppSSI7
 http://chuangshi.qq.com/novel/recommend.html
 http://chuangshi.qq.com/bk/ds/13702712.html?val_ref=bookqqcom&token=AGlVMAJ3BjRQcANqBWBUN1IyADtWY1Q8UnsHNVUzXmVRY1U8BTVXcAYhUD1VI1I2UmUIbFN4VikHdwI0BGRSMQAyVWYCOAZlUDEDMQU8VGhSMwBmVmJUalI2BzZVZF5oUWFVYgVnVzQGMFBlVWxSalIxCGpTbFZiB28CMgRjUmQANFViAjUGNlAzAzkFNFQoo00oUmQAYVZgVGFSaQdlVWFeNVFmVWMFNldlBmFQZlViUjhSMQhrU2FWMgdiAmIEbFJmADNVYA
+
+2016/09/27
+
+Traceback (most recent call last):
+  File "qq-auto-login.py", line 68, in <module>
+    go()
+  File "qq-auto-login.py", line 22, in go
+    b.switch_to.frame(b.find_element_by_xpath('//*[@id="newVcodeIframe"]/iframe'))
+  File "/usr/local/lib/python3.5/dist-packages/selenium/webdriver/remote/webdriver.py", line 293, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "/usr/local/lib/python3.5/dist-packages/selenium/webdriver/remote/webdriver.py", line 752, in find_element
+    'value': value})['value']
+  File "/usr/local/lib/python3.5/dist-packages/selenium/webdriver/remote/webdriver.py", line 236, in execute
+    self.error_handler.check_response(response)
+  File "/usr/local/lib/python3.5/dist-packages/selenium/webdriver/remote/errorhandler.py", line 192, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: {"errorMessage":"Unable to find element with xpath '//*[@id=\"newVcodeIframe\"]/iframe'","request":{"headers":{"Accept":"application/json","Accept-Encoding":"identity","Connection":"close","Content-Length":"118","Content-Type":"application/json;charset=UTF-8","Host":"127.0.0.1:46291","User-Agent":"Python-urllib/3.5"},"httpVersion":"1.1","method":"POST","post":"{\"value\": \"//*[@id=\\\"newVcodeIframe\\\"]/iframe\", \"using\": \"xpath\", \"sessionId\": \"edbd2c90-848a-11e6-8cc8-8be080174fb8\"}","url":"/element","urlParsed":{"anchor":"","query":"","file":"element","directory":"/","path":"/element","relative":"/element","port":"","host":"","password":"","user":"","userInfo":"","authority":"","protocol":"","source":"/element","queryKey":{},"chunks":["element"]},"urlOriginal":"/session/edbd2c90-848a-11e6-8cc8-8be080174fb8/element"}}
+Screenshot: available via screen
